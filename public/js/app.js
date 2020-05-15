@@ -4,14 +4,29 @@ const desctemplate = document.querySelector('#description-template').innerHTML;
 const loadtemplate = document.querySelector('#loader-template').innerHTML;
 const errorTemplate = document.querySelector('#error-template').innerHTML;
 
+const $btnSearch = document.querySelector('#btn-search');
+const $btnPlace = document.querySelector('#btn-place');
 
 
-document.querySelector('#btn-search').addEventListener('click',(e)=>{
+const disabledButtons = ()=>{
+    $btnSearch.setAttribute('disabled','disabled');
+    $btnPlace.setAttribute('disabled','disabled');
+}
+
+const enableButtons = ()=>{
+    $btnSearch.removeAttribute('disabled');
+    $btnPlace.removeAttribute('disabled');
+}
+
+$btnSearch.addEventListener('click',(e)=>{
     e.preventDefault();
+
+    disabledButtons();
 
     let markup = Mustache.render(loadtemplate);
     document.querySelector('#data-area').innerHTML = "";
     document.querySelector('#data-area').insertAdjacentHTML('beforeend',markup);
+
 
 
     const location = document.querySelector('#location').value;
@@ -37,18 +52,23 @@ document.querySelector('#btn-search').addEventListener('click',(e)=>{
 
             document.querySelector('#data-area').innerHTML = "";
             document.querySelector('#data-area').insertAdjacentHTML('beforeend',markup);
+
+            enableButtons();
             
         })
     })
 })
 
-document.querySelector('#btn-place').addEventListener('click',(e)=>{
+$btnPlace.addEventListener('click',(e)=>{
 
     if(!navigator.geolocation) {
         return errorMessageRendering.log('Your Browser does not support geolocation');
     }
 
     e.preventDefault();
+
+    disabledButtons();
+    document.querySelector('#location').value = "";
 
     let markup = Mustache.render(loadtemplate);
     document.querySelector('#data-area').innerHTML = "";
@@ -71,7 +91,7 @@ document.querySelector('#btn-place').addEventListener('click',(e)=>{
     
                 document.querySelector('#data-area').innerHTML = "";
                 document.querySelector('#data-area').insertAdjacentHTML('beforeend',markup);
-
+                enableButtons();
             })
         })
     })
@@ -85,4 +105,5 @@ const errorMessageRendering =  (msg)=>{
     });
     document.querySelector('#data-area').innerHTML = "";
     document.querySelector('#data-area').insertAdjacentHTML('beforeend',markup);
+    enableButtons();
 }
