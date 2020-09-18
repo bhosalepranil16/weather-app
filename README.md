@@ -2,7 +2,7 @@
 Web App created using Node.js, Express.js and Bootstrap.
 
 ## Installation
-* Sign UP on weatherstack Real-Time & Historical World Weather Data API by using this [link.] (https://weatherstack.com/)
+* Sign UP on weatherstack Real-Time & Historical World Weather Data API by using link (https://weatherstack.com/)
 * Copy your API key and save somewhere
 * Clone the repository
 * Add a file named .env in main directory & Copy follwing part in it.
