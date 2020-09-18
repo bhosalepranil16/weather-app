@@ -14,6 +14,7 @@ API_KEY=<YOUR_API_KEY>
 ## Usage
 
 ```
+npm install
 npm start
 ```
 
