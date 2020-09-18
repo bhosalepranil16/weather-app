@@ -2,20 +2,21 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* overflow-x: hidden; */
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-image: url('../images/back.png');
+    background-repeat: repeat-y;
+    background-attachment: fixed;
+    background-position: center;
 }
 
 .loader {
-    position: relative;
-    top: -20px;
     margin: auto;
     border: 16px solid #f3f3f3;
-    border-radius: 50%;
+    border-radius: 70%;
     border-top: 16px solid rgb(40, 3, 250);
     border-bottom: 16px solid rgb(40, 3, 250);
-    width: 120px;
-    height: 120px;
+    width: 170px;
+    height: 170px;
     -webkit-animation: spin 2s linear infinite;
     animation: spin 2s linear infinite;
 }
@@ -24,13 +25,8 @@
     100% { transform: rotate(360deg); }
 }
 
-
-/*For Desktop*/
-
-@media only screen and (min-width: 600px) {
-
-    #data-area {
-        text-align: center;
+@media (max-width: 480px) {
+    #error-template {
+        font-size: 12px;
     }
-
-}
+  }

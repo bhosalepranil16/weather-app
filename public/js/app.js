@@ -32,22 +32,24 @@ $btnSearch.addEventListener('click',(e)=>{
     const location = document.querySelector('#location').value;
 
     if(!location) {
-        return errorMessageRendering('   Please provide a valid location!!!');
+        return errorMessageRendering('Please provide a valid location!!!');
     }
 
     fetch(`/weather?search=${location}`).then(res=>{
         res.json().then(({ data })=>{
             
             if(data.error) {
-                return errorMessageRendering('   Please provide a valid location!!!');
+                return errorMessageRendering('Please provide a valid location!!!');
             }
+
+            console.log(data);
 
             markup = Mustache.render(desctemplate,{
                 location : `${data.location.name}, ${data.location.country}`,
-                humidity : data.current.humidity,
                 temperature : data.current.temperature,
                 description : data.current.weather_descriptions[0],
-                speed : data.current.wind_speed
+                speed : data.current.wind_speed,
+                src : data.current.weather_icons[0]
             });
 
             document.querySelector('#data-area').innerHTML = "";
@@ -79,14 +81,12 @@ $btnPlace.addEventListener('click',(e)=>{
         fetch(`/my?lat=${position.coords.latitude}&lon=${position.coords.longitude}`).then(res=>{
             res.json().then(({ data })=>{
 
-                
                 markup = Mustache.render(desctemplate,{
                     location : `${data.location.name}, ${data.location.country}`,
-                    humidity : data.current.humidity,
                     temperature : data.current.temperature,
                     description : data.current.weather_descriptions[0],
                     speed : data.current.wind_speed,
-                    
+                    src : data.current.weather_icons[0]
                 });
     
                 document.querySelector('#data-area').innerHTML = "";
@@ -99,8 +99,7 @@ $btnPlace.addEventListener('click',(e)=>{
 
 
 const errorMessageRendering =  (msg)=>{
-
-    markup = Mustache.render(errorTemplate,{
+    let markup = Mustache.render(errorTemplate,{
         msg
     });
     document.querySelector('#data-area').innerHTML = "";

@@ -10,67 +10,52 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    
-    <!-- <div class="container mt-5">
+    <div class="container" id="background">
+        <h1 class="text-white font-weight-bold text-center mb-3 mt-2">Weather App</h1>
         <div class="row">
-            <div class="col">
-                <h1 class="text-center mb-5 bg-dark text-white">Weather App</h1>
+            <div class="col-md-4">
+                <form class="form-group ">
+                    <input type="text" class="form-control d-block bg-light text-white border-outline-primary font-weight-bold" id="location" placeholder="Location" autocomplete="off">
+                </form>
             </div>
-        </div> -->
 
-        <div class="card bg-dark text-white m-1">
-            <div class="container">
-                <div class="card-header">
-                    <h1 class="text-center mb-4">Weather App</h1>
-                </div>
-                <div class="row">   
-
-                    <div class="col-md-4 text-center">
-                        <form class="form-group ">
-                            <input type="text" class="form-control d-block  bg-dark text-white border-outline-primary" id="location" placeholder="Location">
-                        </form>
-                    </div>
-
-                    <div class="col-md-4 text-center">
-                        <form class="form-group ">
-                            <button class="btn btn-outline-primary btn-block" id = "btn-search"><i class="fas fa-search "></i></button>
-                        </form>
-                    </div>
-                    
-                    
-                    <div class="col-md-4 text-center">
-                        <form class="form-group ">
-                            <button class="btn btn-outline-primary btn-block" id="btn-place"><i class="fas fa-location-arrow "></i></button>
-                        </form>
-                    </div>
-                    
-                </div>
-                
-                <div class="card-body mt-5" id="data-area">
-                    
-                </div>
-                <div class="card-footer">
-                    <h3 class="text-center">Created By Sakshi & Pranil</h3>
-                </div>
+            <div class="col-md-4 text-center">
+                <form class="form-group ">
+                    <button class="btn btn-outline-light btn-block" id = "btn-search"><i class="fas fa-search "></i></button>
+                </form>
             </div>
+            
+            
+            <div class="col-md-4 text-center">
+                <form class="form-group ">
+                    <button class="btn btn-outline-light btn-block" id="btn-place"><i class="fas fa-location-arrow "></i></button>
+                </form>
+            </div>
+        </div>
+        
+        <div id="data-area">
+            
         </div>
     </div>
 
+    
+
+    <script id="error-template" type="text/html">
+        <h2 class=" mt-3 font-weight-bold" style="font-size:25px">{{msg}}</h2>
+    </script>
 
     <script id="loader-template" type="text/html">
         <div class="loader"></div>
      </script>
-
-    <script id="error-template" type="text/html">
-        <h3 class="bg-danger text-center py-2">Please Provide a Valid Location</h3>
-    </script>
-
+    
     <script id="description-template" type="text/html">
-        <h4 class="mb-3"><i class="far fa-compass"></i> Location : {{location}}</h4>
-        <h4 class="mb-3"><i class="fas fa-thermometer-empty"></i> Temperature : {{temperature}} <sup>o</sup>C</h4>
-        <h4 class="mb-3"><i class="far fa-file"></i> Description : {{description}}</h4>
-        <h4 class="mb-3"><i class="fas fa-wind"></i> Wind Speed : {{speed}} Km/h</h4>
-        <h4 class="mb-3"><i class="fas fa-cloud-meatball"></i> Humidity : {{humidity}}%</h4>
+        <div class="text-white text-center">
+            <h2 class=" mt-3 font-weight-bold" style="font-size:32px">{{location}}</h2>
+            <h1 class=" font-weight-bold my-3"  style="font-size: 52px;">{{temperature}} <sup>o</sup>C</h1>
+            <img src={{src}} alt="{{description}}" style="height : 120px; width: 120px">
+            <h2 class=" mt-3 font-weight-bold" style="font-size:25px">{{description}}</h2>
+            <h2 class="mt-3 font-weight-bold" style="font-size:25px"><i class="fas fa-wind"></i> {{speed}} Km/h</h2>
+        </div>
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
